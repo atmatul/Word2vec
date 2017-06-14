@@ -1,3 +1,6 @@
+matplotlib
+seaborn
+sklearn
 tqdm
 gensim
 nltk
