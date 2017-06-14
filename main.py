@@ -8,7 +8,7 @@ import sklearn.manifold as skmanifold
 import seaborn as sns
 
 
-def create_model(relative_path, model_path):
+def create_model(relative_path):
     corpus = []
     for filename in os.listdir(os.path.join(os.getcwd(), relative_path)):
         _filepath = os.path.join(relative_path, filename)
@@ -68,20 +68,21 @@ def visualize_charts(chart_points, annotations=False):
 
 if __name__ == '__main__':
     # Prepare data for training
+
     _relative_path = os.path.join('corpus', 'shiva')
     _model_path = os.path.join('saved', 'model-shiva.w2v')
     _chart_path = os.path.join('data', 'chart-shiva.csv')
 
     # Creating the model
-    _model = create_model(_relative_path, _model_path)
+    _model = create_model(_relative_path)
     # Saving the trained model
-    _model.save(_model_path)
+    # _model.save(_model_path)
     # Training the model
     _trained_model = _model   # or
     # _trained_model = gensim.models.Word2Vec.load('saved/model-shiva.w2v')
     _points = train_model(_trained_model)
     # Saving the co-ordinates for visualization
-    _points.to_csv(_chart_path)
+    # _points.to_csv(_chart_path)
     # Visualizing the model
     _chart_points = _points    # or
     # _chart_points = pd.read_csv(_chart_path)
