@@ -70,20 +70,21 @@ if __name__ == '__main__':
     # Prepare data for training
 
     _relative_path = os.path.join('corpus', 'shiva')
-    _model_path = os.path.join('saved', 'model-shiva.w2v')
+    _model_path = os.path.join('saved', 'model-shiva_newstpwrd.w2v')
     _chart_path = os.path.join('data', 'chart-shiva.csv')
 
     # Creating the model
     _model = create_model(_relative_path)
     # Saving the trained model
-    # _model.save(_model_path)
+    _model.save(_model_path)
     # Training the model
     _trained_model = _model   # or
     # _trained_model = gensim.models.Word2Vec.load('saved/model-shiva.w2v')
     _points = train_model(_trained_model)
     # Saving the co-ordinates for visualization
-    # _points.to_csv(_chart_path)
+    _points.to_csv(_chart_path)
     # Visualizing the model
     _chart_points = _points    # or
     # _chart_points = pd.read_csv(_chart_path)
     visualize_charts(_chart_points, annotations=True)
+    print("Checking the association for 'Somras':\n", _trained_model.wv.most_similar('Somras'))
